@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>763</width>
-    <height>760</height>
+    <height>1000</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>590</x>
-     <y>730</y>
+     <y>970</y>
      <width>166</width>
      <height>25</height>
     </rect>
@@ -55,22 +55,9 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>111</width>
+         <width>211</width>
          <height>31</height>
         </rect>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="checkBox_4">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>30</y>
-         <width>92</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>rand</string>
        </property>
       </widget>
      </widget>
@@ -115,22 +102,9 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>111</width>
+         <width>211</width>
          <height>31</height>
         </rect>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="checkBox_3">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>30</y>
-         <width>92</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>rand</string>
        </property>
       </widget>
      </widget>
@@ -320,9 +294,9 @@
     <widget class="QGroupBox" name="groupBox_15">
      <property name="geometry">
       <rect>
-       <x>610</x>
+       <x>410</x>
        <y>10</y>
-       <width>121</width>
+       <width>191</width>
        <height>71</height>
       </rect>
      </property>
@@ -334,45 +308,9 @@
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>101</width>
+        <width>161</width>
         <height>31</height>
        </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="groupBox_16">
-     <property name="geometry">
-      <rect>
-       <x>410</x>
-       <y>10</y>
-       <width>191</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Port (dest)</string>
-     </property>
-     <widget class="QTextEdit" name="textEdit_15">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_12">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>30</y>
-        <width>92</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>rand</string>
       </property>
      </widget>
     </widget>
@@ -678,11 +616,119 @@
     <attribute name="title">
      <string>UDP</string>
     </attribute>
+    <widget class="QGroupBox" name="groupBox_22">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>191</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Checksum</string>
+     </property>
+     <widget class="QTextEdit" name="textEdit_21">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_25">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>92</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>rand</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_5">
     <attribute name="title">
      <string>ICMP</string>
     </attribute>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>810</y>
+     <width>741</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Data</string>
+   </property>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>721</width>
+      <height>111</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>570</y>
+     <width>741</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Additional</string>
+   </property>
+   <widget class="QGroupBox" name="groupBox_16">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>30</y>
+      <width>191</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Checksum</string>
+    </property>
+    <widget class="QTextEdit" name="textEdit_15">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>111</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_12">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>30</y>
+       <width>92</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>rand</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
