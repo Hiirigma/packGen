@@ -29,7 +29,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QGroupBox" name="groupBox_5">
+  <widget class="QGroupBox" name="IPv4Box">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -46,11 +46,11 @@
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="1" column="1">
-     <widget class="QGroupBox" name="groupBox_7">
+     <widget class="QGroupBox" name="IPDestBox">
       <property name="title">
        <string>IP (destination)</string>
       </property>
-      <widget class="QTextEdit" name="textEdit_5">
+      <widget class="QTextEdit" name="IPEditBox">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -63,11 +63,11 @@
      </widget>
     </item>
     <item row="1" column="2">
-     <widget class="QGroupBox" name="groupBox_8">
+     <widget class="QGroupBox" name="FragentBox">
       <property name="title">
        <string>Fragment offset</string>
       </property>
-      <widget class="QTextEdit" name="textEdit_6">
+      <widget class="QTextEdit" name="FragentEdit">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -77,7 +77,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_5">
+      <widget class="QCheckBox" name="FragentCheck">
        <property name="geometry">
         <rect>
          <x>130</x>
@@ -93,11 +93,11 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QGroupBox" name="groupBox_6">
+     <widget class="QGroupBox" name="IPSrcBox">
       <property name="title">
        <string>IP (source)</string>
       </property>
-      <widget class="QTextEdit" name="textEdit_4">
+      <widget class="QTextEdit" name="IPSrcEdit">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -111,7 +111,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QGroupBox" name="groupBox">
+  <widget class="QGroupBox" name="EthBox">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -125,11 +125,11 @@
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="2">
-     <widget class="QGroupBox" name="groupBox_12">
+     <widget class="QGroupBox" name="TypeBox">
       <property name="title">
        <string>Type</string>
       </property>
-      <widget class="QTextEdit" name="textEdit_10">
+      <widget class="QTextEdit" name="TypeEdit">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -142,11 +142,11 @@
      </widget>
     </item>
     <item row="0" column="0">
-     <widget class="QGroupBox" name="groupBox_10">
+     <widget class="QGroupBox" name="MacSrcBox">
       <property name="title">
        <string>MAC (source)</string>
       </property>
-      <widget class="QTextEdit" name="textEdit_7">
+      <widget class="QTextEdit" name="MacSrcEdit">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -156,7 +156,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_6">
+      <widget class="QCheckBox" name="MacSrcCheck">
        <property name="geometry">
         <rect>
          <x>130</x>
@@ -172,11 +172,11 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QGroupBox" name="groupBox_11">
+     <widget class="QGroupBox" name="MacDestBox">
       <property name="title">
        <string>MAC (destination)</string>
       </property>
-      <widget class="QTextEdit" name="textEdit_9">
+      <widget class="QTextEdit" name="MacDestEdit">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -186,7 +186,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_8">
+      <widget class="QCheckBox" name="MacDestCheck">
        <property name="geometry">
         <rect>
          <x>130</x>
@@ -203,7 +203,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QTabWidget" name="tabWidget">
+  <widget class="QTabWidget" name="PacketTabWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -215,11 +215,11 @@
    <property name="currentIndex">
     <number>2</number>
    </property>
-   <widget class="QWidget" name="tab_3">
+   <widget class="QWidget" name="TCPTab">
     <attribute name="title">
      <string>TCP</string>
     </attribute>
-    <widget class="QGroupBox" name="groupBox_13">
+    <widget class="QGroupBox" name="PortSrcBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -231,7 +231,7 @@
      <property name="title">
       <string>Port (source)</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_8">
+     <widget class="QTextEdit" name="PortSrcEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -241,7 +241,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_7">
+     <widget class="QCheckBox" name="PortSrcCheck">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -255,7 +255,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_14">
+    <widget class="QGroupBox" name="PortDestBox">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -267,7 +267,7 @@
      <property name="title">
       <string>Port (dest)</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_12">
+     <widget class="QTextEdit" name="PortDestEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -277,7 +277,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_10">
+     <widget class="QCheckBox" name="PortDestCheck">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -291,7 +291,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_15">
+    <widget class="QGroupBox" name="OffsBox">
      <property name="geometry">
       <rect>
        <x>410</x>
@@ -303,7 +303,7 @@
      <property name="title">
       <string>Offset</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_14">
+     <widget class="QTextEdit" name="OffsEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -314,7 +314,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_17">
+    <widget class="QGroupBox" name="SeqNBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -326,7 +326,7 @@
      <property name="title">
       <string>Seq Number</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_16">
+     <widget class="QTextEdit" name="SeqNEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -336,7 +336,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_13">
+     <widget class="QCheckBox" name="SeqNCheck">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -350,7 +350,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_18">
+    <widget class="QGroupBox" name="AckNBox">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -362,7 +362,7 @@
      <property name="title">
       <string>Ack Number</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_17">
+     <widget class="QTextEdit" name="AckNEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -372,7 +372,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_14">
+     <widget class="QCheckBox" name="AckNCheck">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -386,7 +386,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_19">
+    <widget class="QGroupBox" name="WinBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -398,7 +398,7 @@
      <property name="title">
       <string>Window</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_18">
+     <widget class="QTextEdit" name="WinEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -408,7 +408,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_15">
+     <widget class="QCheckBox" name="WinCheck">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -422,7 +422,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_20">
+    <widget class="QGroupBox" name="UrgBox">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -434,7 +434,7 @@
      <property name="title">
       <string>Urgent</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_19">
+     <widget class="QTextEdit" name="UrgEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -444,7 +444,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_16">
+     <widget class="QCheckBox" name="UrgCheck">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -458,7 +458,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_21">
+    <widget class="QGroupBox" name="ResTCPBox">
      <property name="geometry">
       <rect>
        <x>410</x>
@@ -470,7 +470,7 @@
      <property name="title">
       <string>Reserved</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_20">
+     <widget class="QTextEdit" name="ResTCPEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -480,7 +480,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_17">
+     <widget class="QCheckBox" name="ResTCPCheck">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -494,7 +494,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="NSCheck">
      <property name="geometry">
       <rect>
        <x>410</x>
@@ -507,7 +507,7 @@
       <string>NS</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_2">
+    <widget class="QCheckBox" name="CWRCheck">
      <property name="geometry">
       <rect>
        <x>410</x>
@@ -520,7 +520,7 @@
       <string>CWR</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_18">
+    <widget class="QCheckBox" name="ECECheck">
      <property name="geometry">
       <rect>
        <x>410</x>
@@ -533,7 +533,7 @@
       <string>ECE</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_19">
+    <widget class="QCheckBox" name="URGCheck">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -546,7 +546,7 @@
       <string>URG</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_20">
+    <widget class="QCheckBox" name="ACKCheck">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -559,7 +559,7 @@
       <string>ACK</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_21">
+    <widget class="QCheckBox" name="PSHCheck">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -572,7 +572,7 @@
       <string>PSH</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_22">
+    <widget class="QCheckBox" name="RSTCheck">
      <property name="geometry">
       <rect>
        <x>530</x>
@@ -585,7 +585,7 @@
       <string>RST</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_23">
+    <widget class="QCheckBox" name="SYNCheck">
      <property name="geometry">
       <rect>
        <x>530</x>
@@ -598,7 +598,7 @@
       <string>SYN</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_24">
+    <widget class="QCheckBox" name="FINCheck">
      <property name="geometry">
       <rect>
        <x>530</x>
@@ -612,16 +612,16 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_4">
+   <widget class="QWidget" name="UDPBox">
     <attribute name="title">
      <string>UDP</string>
     </attribute>
    </widget>
-   <widget class="QWidget" name="tab_5">
+   <widget class="QWidget" name="ICMPBox">
     <attribute name="title">
      <string>ICMP</string>
     </attribute>
-    <widget class="QGroupBox" name="groupBox_38">
+    <widget class="QGroupBox" name="TypeICMPBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -633,7 +633,7 @@
      <property name="title">
       <string>Type</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_38">
+     <widget class="QTextEdit" name="TypeICMPEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -644,7 +644,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_39">
+    <widget class="QGroupBox" name="CodeBox">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -656,7 +656,7 @@
      <property name="title">
       <string>Code</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_39">
+     <widget class="QTextEdit" name="CodeEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -667,7 +667,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_40">
+    <widget class="QGroupBox" name="IDICMPBox">
      <property name="geometry">
       <rect>
        <x>290</x>
@@ -679,7 +679,7 @@
      <property name="title">
       <string>ID</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_40">
+     <widget class="QTextEdit" name="IDEditBox">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -690,7 +690,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_41">
+    <widget class="QGroupBox" name="SeqICMPBox">
      <property name="geometry">
       <rect>
        <x>430</x>
@@ -702,7 +702,7 @@
      <property name="title">
       <string>Seq</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_41">
+     <widget class="QTextEdit" name="SeqICMPEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -713,7 +713,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="ICMPMCombo">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -733,7 +733,7 @@
       </property>
      </item>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="ICMPLabel">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -748,7 +748,7 @@
     </widget>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_2">
+  <widget class="QGroupBox" name="DataBox">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -760,7 +760,7 @@
    <property name="title">
     <string>Data</string>
    </property>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="DataEdit">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -771,7 +771,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_3">
+  <widget class="QGroupBox" name="AddBox">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -783,7 +783,7 @@
    <property name="title">
     <string>Additional</string>
    </property>
-   <widget class="QGroupBox" name="groupBox_23">
+   <widget class="QGroupBox" name="VersionBox">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -795,7 +795,7 @@
     <property name="title">
      <string>Version</string>
     </property>
-    <widget class="QTextEdit" name="textEdit_22">
+    <widget class="QTextEdit" name="VersionEdit">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -806,7 +806,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_24">
+   <widget class="QGroupBox" name="ProtocolBox">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -818,7 +818,7 @@
     <property name="title">
      <string>Protocol</string>
     </property>
-    <widget class="QTextEdit" name="textEdit_24">
+    <widget class="QTextEdit" name="ProtocolEdit">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -829,7 +829,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_25">
+   <widget class="QGroupBox" name="IDBox">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -841,7 +841,7 @@
     <property name="title">
      <string>ID</string>
     </property>
-    <widget class="QTextEdit" name="textEdit_25">
+    <widget class="QTextEdit" name="IDEdit">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -852,7 +852,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_26">
+   <widget class="QGroupBox" name="TTLBox">
     <property name="geometry">
      <rect>
       <x>410</x>
@@ -864,7 +864,7 @@
     <property name="title">
      <string>TTL</string>
     </property>
-    <widget class="QTextEdit" name="textEdit_26">
+    <widget class="QTextEdit" name="TTLEdit">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -875,7 +875,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_27">
+   <widget class="QGroupBox" name="ChsumBox">
     <property name="geometry">
      <rect>
       <x>530</x>
@@ -887,7 +887,7 @@
     <property name="title">
      <string>Checksum</string>
     </property>
-    <widget class="QTextEdit" name="textEdit_27">
+    <widget class="QTextEdit" name="ChsumEdit">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -897,7 +897,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_26">
+    <widget class="QCheckBox" name="ChsumCheck">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -911,7 +911,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_4">
+   <widget class="QGroupBox" name="ServiceBox">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -923,7 +923,7 @@
     <property name="title">
      <string>Services</string>
     </property>
-    <widget class="QGroupBox" name="groupBox_28">
+    <widget class="QGroupBox" name="PrecBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -935,7 +935,7 @@
      <property name="title">
       <string>Precedence</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_28">
+     <widget class="QTextEdit" name="PrecEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -946,7 +946,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_29">
+    <widget class="QGroupBox" name="ECNBox">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -958,7 +958,7 @@
      <property name="title">
       <string>ECN</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_29">
+     <widget class="QTextEdit" name="ECNEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -969,7 +969,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QCheckBox" name="checkBox_3">
+    <widget class="QCheckBox" name="DeayCheck">
      <property name="geometry">
       <rect>
        <x>290</x>
@@ -982,7 +982,7 @@
       <string>Delay</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_4">
+    <widget class="QCheckBox" name="ReliabCheck">
      <property name="geometry">
       <rect>
        <x>290</x>
@@ -995,7 +995,7 @@
       <string>Reliability</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_12">
+    <widget class="QCheckBox" name="ThrCheck">
      <property name="geometry">
       <rect>
        <x>290</x>
@@ -1008,7 +1008,7 @@
       <string>Throughput</string>
      </property>
     </widget>
-    <widget class="QGroupBox" name="groupBox_32">
+    <widget class="QGroupBox" name="TLBox">
      <property name="geometry">
       <rect>
        <x>400</x>
@@ -1020,7 +1020,7 @@
      <property name="title">
       <string>TL</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_32">
+     <widget class="QTextEdit" name="TLEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1031,7 +1031,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox_33">
+    <widget class="QGroupBox" name="IHLBox">
      <property name="geometry">
       <rect>
        <x>470</x>
@@ -1043,7 +1043,7 @@
      <property name="title">
       <string>IHL</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_33">
+     <widget class="QTextEdit" name="IHLEdit">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1054,7 +1054,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QCheckBox" name="checkBox_33">
+    <widget class="QCheckBox" name="ResCheck">
      <property name="geometry">
       <rect>
        <x>540</x>
@@ -1067,7 +1067,7 @@
       <string>Reserved</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_34">
+    <widget class="QCheckBox" name="DFCheck">
      <property name="geometry">
       <rect>
        <x>540</x>
@@ -1080,7 +1080,7 @@
       <string>DF</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_35">
+    <widget class="QCheckBox" name="MFCheck">
      <property name="geometry">
       <rect>
        <x>540</x>
