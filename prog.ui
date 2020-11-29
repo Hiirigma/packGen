@@ -213,7 +213,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
@@ -616,19 +616,24 @@
     <attribute name="title">
      <string>UDP</string>
     </attribute>
-    <widget class="QGroupBox" name="groupBox_22">
+   </widget>
+   <widget class="QWidget" name="tab_5">
+    <attribute name="title">
+     <string>ICMP</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox_38">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>191</width>
+       <width>131</width>
        <height>71</height>
       </rect>
      </property>
      <property name="title">
-      <string>Checksum</string>
+      <string>Type</string>
      </property>
-     <widget class="QTextEdit" name="textEdit_21">
+     <widget class="QTextEdit" name="textEdit_38">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -638,25 +643,109 @@
        </rect>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_25">
+    </widget>
+    <widget class="QGroupBox" name="groupBox_39">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>10</y>
+       <width>131</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Code</string>
+     </property>
+     <widget class="QTextEdit" name="textEdit_39">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>10</x>
         <y>30</y>
-        <width>92</width>
-        <height>23</height>
+        <width>111</width>
+        <height>31</height>
        </rect>
-      </property>
-      <property name="text">
-       <string>rand</string>
       </property>
      </widget>
     </widget>
-   </widget>
-   <widget class="QWidget" name="tab_5">
-    <attribute name="title">
-     <string>ICMP</string>
-    </attribute>
+    <widget class="QGroupBox" name="groupBox_40">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>10</y>
+       <width>131</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>ID</string>
+     </property>
+     <widget class="QTextEdit" name="textEdit_40">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_41">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>10</y>
+       <width>131</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Seq</string>
+     </property>
+     <widget class="QTextEdit" name="textEdit_41">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>90</y>
+       <width>171</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Echo Request</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Echo Reply</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>111</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>ICMP Message:</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
