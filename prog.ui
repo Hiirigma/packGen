@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>841</width>
-    <height>640</height>
+    <width>856</width>
+    <height>748</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -209,7 +209,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="TCPTab">
     <attribute name="title">
@@ -292,7 +292,7 @@
       <rect>
        <x>410</x>
        <y>10</y>
-       <width>191</width>
+       <width>131</width>
        <height>71</height>
       </rect>
      </property>
@@ -304,7 +304,7 @@
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>161</width>
+        <width>111</width>
         <height>31</height>
        </rect>
       </property>
@@ -607,11 +607,191 @@
       <string>FIN</string>
      </property>
     </widget>
+    <widget class="QGroupBox" name="TCPChsumBox">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>10</y>
+       <width>181</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Checksum</string>
+     </property>
+     <widget class="QTextEdit" name="TCPChsumEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="TCPChsumCheck">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>30</y>
+        <width>51</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>rand</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QWidget" name="UDPBox">
     <attribute name="title">
      <string>UDP</string>
     </attribute>
+    <widget class="QGroupBox" name="UDPPortDestBox">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>10</y>
+       <width>191</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Port (dest)</string>
+     </property>
+     <widget class="QTextEdit" name="UDPPortDestEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="UDPPortDestCheck">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>92</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>rand</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="UDPPortSrcBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>191</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Port (source)</string>
+     </property>
+     <widget class="QTextEdit" name="UDPPortSrcEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="UDPPortSrcCheck">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>92</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>rand</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="UDPChsumBox">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>10</y>
+       <width>191</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Checksum</string>
+     </property>
+     <widget class="QTextEdit" name="UDPChsumEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="UDPChsumCheck">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>51</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>rand</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="UDPLenBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>191</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Length</string>
+     </property>
+     <widget class="QTextEdit" name="UDPLenEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="UDPLenCheck">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>51</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>rand</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QWidget" name="ICMPBox">
     <attribute name="title">
