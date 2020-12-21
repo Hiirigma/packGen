@@ -40,52 +40,52 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         self.UDPPortDestCheck.clicked.connect(self.updUDPdPortDst)
 
     def upddUDPLen(self): 
-        dUDPLen = random.randint()
+        dUDPLen = random.randint(0,65535)
         self.UDPLenEdit.setText(str(dUDPLen))
 
     def upddUDPChsum(self): 
-        dUDPChsum = random.randint()
+        dUDPChsum = random.randint(0,65535)
         self.UDPChsumEdit.setText(str(dUDPChsum))
 
     def updUDPdPortSrc(self): 
-        dPortSrc = random.randint()
+        dPortSrc = random.randint(0,65535)
         self.UDPPortSrcEdit.setText(str(dPortSrc))
 
     def updUDPdPortDst(self): 
-        dPortDst = random.randint()
+        dPortDst = random.randint(0,65535)
         self.UDPPortDestEdit.setText(str(dPortDst))
 
     def upddTCPChsum(self): 
-        dTCPChsum = random.randint()
+        dTCPChsum = random.randint(0,65535)
         self.TCPChsumEdit.setText(str(dTCPChsum))
 
     def upddUrgNum(self): 
-        dUrgNum = random.randint()
+        dUrgNum = random.randint(0,65535)
         self.UrgEdit.setText(str(dUrgNum))
 
     def upddWinNum(self): 
-        dWinNum = random.randint()
+        dWinNum = random.randint(0,65535)
         self.WinEdit.setText(str(dWinNum))
 
     def upddAckNum(self): 
-        dAckNum = random.randint()
+        dAckNum = random.randint(0,65535)
         self.AckNEdit.setText(str(dAckNum))
 
     def upddSeqNum(self): 
-        dSeqNum = random.randint()
+        dSeqNum = random.randint(0,65535)
         self.SeqNEdit.setText(str(dSeqNum))
 
 
     def updSPort(self):
-        dPortSrc = random.randint()
+        dPortSrc = random.randint(0,65535)
         self.PortSrcEdit.setText(str(dPortSrc))
 
     def updDPort(self):
-        dPortDst = random.randint()
+        dPortDst = random.randint(0,65535)
         self.PortDestEdit.setText(str(dPortDst))
 
     def updChSum(self):
-        dChkSum = random.randint()
+        dChkSum = random.randint(0,65535)
         self.ChsumEdit.setText(str(dChkSum))
 
 
@@ -114,48 +114,85 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
 
         sIPSrc = self.IPSrcEdit.toPlainText()
         sIPDst = self.IPDstEdit.toPlainText()
-        dIPVer = int(self.VersionEdit.toPlainText())
-        dIPIhl = int(self.IHLEdit.toPlainText())
-        dIPID = int(self.IDEdit.toPlainText())
-        dTTL = int(self.TTLEdit.toPlainText())
+        if (self.VersionEdit.toPlainText() != ''):
+            dIPVer = int(self.VersionEdit.toPlainText())
+        else:
+            dIPVer = 4
+
+        if (self.IHLEdit.toPlainText() != ''):
+            dIPIhl = int(self.IHLEdit.toPlainText())
+        else:
+            dIPVer = None
+
+        if (self.IDEdit.toPlainText() != ''):    
+            dIPID = int(self.IDEdit.toPlainText())
+        else:
+            dIPID = 1
+
+        if (self.TTLEdit.toPlainText() != ''):
+            dTTL = int(self.TTLEdit.toPlainText())
+        else:
+            dTTL = 64
+        
+        if (self.ChsumEdit.toPlainText() != ''):
+            dChkSum = int(self.ChsumEdit.toPlainText())
+        else:
+            dChkSum = None
+
+
         sProto = self.ProtocolEdit.toPlainText()
-        dChkSum = int(self.ChsumEdit.toPlainText())
-        dType = int(self.TypeEdit.toPlainText())
-        dFrag = int(self.FragEdit.toPlainText())
-        if (self.ResRadioBtn.isEnabled()):
+
+        if (self.TypeEdit.toPlainText() != ''):
+            dType = int(self.TypeEdit.toPlainText())
+        else:
+            dType = 'tcp'
+        
+        if (self.FragEdit.toPlainText() != ''):
+            dFrag = int(self.FragEdit.toPlainText())
+        else:
+            dFrag = 0
+
+        dIPFlag = 0
+        if (self.ResRadioBtn.isChecked()):
             dIPFlag = 0
-        if (self.DFRadioBtn.isEnabled()):
+        if (self.DFRadioBtn.isChecked()):
             dIPFlag = 1
-        if (self.MFRadioBtn.isEnabled()):
+        if (self.MFRadioBtn.isChecked()):
             dIPFlag = 2
 
         dTOS = 0
         
-        if (self.PrecCheckBox0.isEnabled()):
+        if (self.PrecCheckBox0.isChecked()):
             dTOS |= 0x0000001
-        if (self.PrecCheckBox1.isEnabled()):
+        if (self.PrecCheckBox1.isChecked()):
             dTOS |= 0x0000010
-        if (self.PrecCheckBox2.isEnabled()):
+        if (self.PrecCheckBox2.isChecked()):
             dTOS |= 0x0000100
-        if (self.DelayCheck.isEnabled()):
+        if (self.DelayCheck.isChecked()):
             dTOS |= 0x0001000
-        if (self.ThrCheck.isEnabled()):
+        if (self.ThrCheck.isChecked()):
             dTOS |= 0x0001000
-        if (self.ReliabCheck.isEnabled()):
+        if (self.ReliabCheck.isChecked()):
             dTOS |= 0x0010000
-        if (self.ECNCheckBox0.isEnabled()):
+        if (self.ECNCheckBox0.isChecked()):
             dTOS |= 0x0100000
-        if (self.ECNCheckBox1.isEnabled()):
+        if (self.ECNCheckBox1.isChecked()):
             dTOS |= 0x1000000
     
-        dTL = int(self.TLEdit.toPlainText())
-        dIHL = int(self.IHLEdit.toPlainText())
+
+        if (self.TLEdit.toPlainText() != ''):
+            dTL = int(self.TLEdit.toPlainText())
+        else:
+            dTL = None
+        
+        if (self.IHLEdit.toPlainText() != ''):
+            dIHL = int(self.IHLEdit.toPlainText())
+        else:
+            dIHL = None
 
 
         sSrcMAC = self.MacSrcEdit.toPlainText()
-        sDstMAC = self.MacDstEdit.toPlainText()
-
-        packet = IP(dst=sIPSrc, src=sIPDst, version = dIPVer, ihl = dIHl, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)
+        sDstMAC = self.MacDestEdit.toPlainText()
 
         dPortSrc = 0
         dPortDst = 0
@@ -172,67 +209,121 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         dICMPMsg = 0
 # TCP
         if (dCurIdx == 0):
+            if (self.PortSrcEdit.toPlainText() != ''):
+                dPortSrc = int(self.PortSrcEdit.toPlainText())
+            else:
+                dPortStc = 21
+            
+            if (self.PortDestEdit.toPlainText() != ''):
+                dPortDst = int(self.PortDestEdit.toPlainText())
+            else:
+                dPortDst = 80
 
-            dPortSrc = int(self.PortSrcEdit.toPlainText())
-            dPortDst = int(self.PortDestEdit.toPlainText())
-            dSeqNum = int(self.SeqNEdit.toPlainText())
-            dAckNum = int(self.AckNEdit.toPlainText())                
-            dWinNum = int(self.WinEdit.toPlainText())  
-            dUrgNum = int(self.UrgEdit.toPlainText())  
-            dOff = int(self.OffsEdit.toPlainText())  
-            dTCPChsum = int(self.TCPChsumEdit.toPlainText())  
+            if (self.SeqNEdit.toPlainText() != ''):
+                dSeqNum = int(self.SeqNEdit.toPlainText())
+            else:
+                dSeqNum = 0
+            
+            if (self.AckNEdit.toPlainText() != ''):
+                dAckNum = int(self.AckNEdit.toPlainText())  
+            else:
+                dAckNum = 0
+
+            if (self.WinEdit.toPlainText() != ''):              
+                dWinNum = int(self.WinEdit.toPlainText())  
+            else:
+                dWinNum = 8192
+            
+            if (self.UrgEdit.toPlainText() != ''):
+                dUrgNum = int(self.UrgEdit.toPlainText())  
+            else:
+                dUrgNum = 0
+            
+            if (self.OffsEdit.toPlainText() != ''):
+                dOff = int(self.OffsEdit.toPlainText())  
+            else:
+                dOff = None
+            
+            if(self.TCPChsumEdit.toPlainText() != ''):
+                dTCPChsum = int(self.TCPChsumEdit.toPlainText()) 
+            else:
+                dTCPChsum = None
 
             dTCPFlags = 0x000000000
-            if (self.URGCheck.isEnabled()):
+            if (self.URGCheck.isChecked()):
                 dTCPFlags |= 0x000000001          
 
-            if (self.ACKCheck.isEnabled()):
+            if (self.ACKCheck.isChecked()):
                 dTCPFlags |= 0x000000010 
 
-            if (self.PSHCheck.isEnabled()):
+            if (self.PSHCheck.isChecked()):
                 dTCPFlags |= 0x000000100 
 
-            if (self.RSTCheck.isEnabled()):
+            if (self.RSTCheck.isChecked()):
                 dTCPFlags |= 0x000001000 
 
-            if (self.SYNCheck.isEnabled()):
+            if (self.SYNCheck.isChecked()):
                 dTCPFlags |= 0x000010000 
 
-            if (self.FINCheck.isEnabled()):
+            if (self.FINCheck.isChecked()):
                 dTCPFlags |= 0x000100000 
 
-            if (self.CWRCheck.isEnabled()):
+            if (self.CWRCheck.isChecked()):
                 dTCPFlags |= 0x001000000
 
-            if (self.ECECheck.isEnabled()):
+            if (self.ECECheck.isChecked()):
                 dTCPFlags |= 0x010000000
 
-            packet /= TCP(sport = dPortSrc, dport = dPortDst, seq = dSeqNum, ack = dAckNum, dataofs = dOff, flags = dTCPFlags, windows = dWinNum, chksum = dTCPChsum, urgptr = dUrgNum)
+            packet = IP(dst=sIPSrc, src=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)/TCP(sport = dPortSrc, dport = dPortDst, seq = dSeqNum, ack = dAckNum, dataofs = dOff, flags = dTCPFlags, window = dWinNum, chksum = dTCPChsum, urgptr = dUrgNum)/self.FinalDataEdit.toPlainText()
 
 # UDP
         if (dCurIdx == 1):
-            dPortSrc = int(self.UDPPortSrcEdit.toPlainText())
-            dPortDst = int(self.UDPPortDestEdit.toPlainText())
-            dUDPChsum = int(self.UDPChsumEdit.toPlainText())  
-            dUDPLen = int(self.UDPLenEdit.toPlainText())  
+            if (self.UDPPortSrcEdit.toPlainText() != ''):
+                dPortSrc = int(self.UDPPortSrcEdit.toPlainText())
+            else:
+                dPortSrc = 21
 
-            packet /= UDP(sport = dPortSrc, dport = dPortDst, chksum = dUDPChsum, len = dUDPLen)
+            if (self.UDPPortDestEdit.toPlainText() != ''):
+                dPortDst = int(self.UDPPortDestEdit.toPlainText())
+            else:
+                dPortDst = 80
+            
+            if (self.UDPChsumEdit.toPlainText() != ''):
+                dUDPChsum = int(self.UDPChsumEdit.toPlainText())  
+            else:
+                dUDPChsum = None
+            
+            if (self.UDPLenEdit.toPlainText() != ''):
+                dUDPLen = int(self.UDPLenEdit.toPlainText())  
+            else:
+                dUDPLen = None
+
+            packet = IP(dst=sIPSrc, src=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum) / UDP(sport = dPortSrc, dport = dPortDst, chksum = dUDPChsum, len = dUDPLen)/self.FinalDataEdit.toPlainText()
 
 # ICMP   
         if (dCurIdx == 2):
-            dICMPCode = int(self.CodeICMPEdit.toPlainText())  
-            dICMPID = int(self.IDICMPEdit.toPlainText())  
-            dICMPSeq = int(self.SeqICMPEdit.toPlainText())  
+            if (self.CodeICMPEdit.toPlainText() != ''):
+                dICMPCode = int(self.CodeICMPEdit.toPlainText())  
+            else:
+                dICMPCode = 0
+            if (self.IDICMPEdit.toPlainText() != ''):
+                dICMPID = int(self.IDICMPEdit.toPlainText())  
+            else:
+                dICMPID = 0
+            if (self.SeqICMPEdit.toPlainText() != ''):
+                dICMPSeq = int(self.SeqICMPEdit.toPlainText())  
+            else:
+                dICMPSeq = 0
             dIdx = self.ICMPMCombo.currentIndex()
             if (dIdx == 0):
                 dICMPMsg = 0
             else:
                 dICMPMsg = 8
-            packet /= ICMP(type = dICMPMsg, code = dICMPCode, id = dICMPID, seq = dICMPSeq)
+            
+            packet = IP(dst=sIPSrc, src=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)/ICMP(type = dICMPMsg, code = dICMPCode, id = dICMPID, seq = dICMPSeq)/self.FinalDataEdit.toPlainText()
 
+        
 
-        sData = self.FinalDataEdit.toPlainText()
-        packet /= sData
 
         sAdapter = self.AdapterComboBox.currentText()
         sendp(packet,sAdapter)
