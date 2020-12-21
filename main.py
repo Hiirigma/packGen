@@ -17,32 +17,86 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         # Это здесь нужно для доступа к переменным, методам
         # и т.д. в файле design.py
         super().__init__()
-
+        self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         adapt_list = get_if_list()
         for adapt in adapt_list:
             self.AdapterComboBox.addItem(adapt)
-        self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         self.cancelButton.clicked.connect(self.ex_prog)
         self.sendButton.clicked.connect(self.send_packet)
-    #     self.ResRadioBtn.clicked.connect(self.block_DF_MF)
-    #     self.DFRadioBtn.clicked.connect(self.block_RES_MF)
-    #     self.MFRadioBtn.clicked.connect(self.block_RES_DF)
+        self.MacDestCheck.clicked.connect(self.updMacDest)
+        self.MacSrcCheck.clicked.connect(self.updMacSrc)
+        self.ChsumCheck.clicked.connect(self.updChSum)
+        self.PortSrcCheck.clicked.connect(self.updSPort)
+        self.PortDestCheck.clicked.connect(self.updDPort)
+        self.TCPChsumCheck.clicked.connect(self.upddTCPChsum)        
+        self.UrgCheck.clicked.connect(self.upddUrgNum)
+        self.WinCheck.clicked.connect(self.upddWinNum)
+        self.AckNCheck.clicked.connect(self.upddAckNum)
+        self.SeqNCheck.clicked.connect(self.upddSeqNum)
+        
+        self.UDPLenCheck.clicked.connect(self.upddUDPLen)
+        self.UDPChsumCheck.clicked.connect(self.upddUDPChsum)
+        self.UDPPortSrcCheck.clicked.connect(self.updUDPdPortSrc)
+        self.UDPPortDestCheck.clicked.connect(self.updUDPdPortDst)
 
-    # def block_DF_MF(self):
-    #     self.dIPFlag = 0
-    #     self.log_write("Log: DF_MF btn disabled")
+    def upddUDPLen(self): 
+        dUDPLen = random.randint()
+        self.UDPLenEdit.setText(str(dUDPLen))
 
-    # def block_RES_MF(self):
-    #     self.dIPFlag = 1
-    #     self.ResRadioBtn.setDisabled()
-    #     self.MFRadioBtn.setDisabled()
-    #     self.log_write("Log: Res_MF btn disabled")
+    def upddUDPChsum(self): 
+        dUDPChsum = random.randint()
+        self.UDPChsumEdit.setText(str(dUDPChsum))
 
-    # def block_RES_DF(self):
-        # self.dIPFlag = 2
-        # self.DFRadioBtn.setDisabled()
-        # self.MFRadioBtn.setDisabled()
-        # self.log_write("Log: Res_DF btn disabled")
+    def updUDPdPortSrc(self): 
+        dPortSrc = random.randint()
+        self.UDPPortSrcEdit.setText(str(dPortSrc))
+
+    def updUDPdPortDst(self): 
+        dPortDst = random.randint()
+        self.UDPPortDestEdit.setText(str(dPortDst))
+
+    def upddTCPChsum(self): 
+        dTCPChsum = random.randint()
+        self.TCPChsumEdit.setText(str(dTCPChsum))
+
+    def upddUrgNum(self): 
+        dUrgNum = random.randint()
+        self.UrgEdit.setText(str(dUrgNum))
+
+    def upddWinNum(self): 
+        dWinNum = random.randint()
+        self.WinEdit.setText(str(dWinNum))
+
+    def upddAckNum(self): 
+        dAckNum = random.randint()
+        self.AckNEdit.setText(str(dAckNum))
+
+    def upddSeqNum(self): 
+        dSeqNum = random.randint()
+        self.SeqNEdit.setText(str(dSeqNum))
+
+
+    def updSPort(self):
+        dPortSrc = random.randint()
+        self.PortSrcEdit.setText(str(dPortSrc))
+
+    def updDPort(self):
+        dPortDst = random.randint()
+        self.PortDestEdit.setText(str(dPortDst))
+
+    def updChSum(self):
+        dChkSum = random.randint()
+        self.ChsumEdit.setText(str(dChkSum))
+
+
+    def updMacDest(self):
+        sDstMAC = self.genRandMAC()
+        self.MacDestEdit.setText(sDstMAC)
+
+    def updMacSrc(self):
+        sSrcMAC = self.genRandMAC()
+        self.MacSrcEdit.setText(sSrcMAC)
+
 
     def genRandMAC(self):
         return "02:00:00:%02x:%02x:%02x" % (random.randint(0, 255),
@@ -65,10 +119,7 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         dIPID = int(self.IDEdit.toPlainText())
         dTTL = int(self.TTLEdit.toPlainText())
         sProto = self.ProtocolEdit.toPlainText()
-        if (self.ChsumCheck.isEnabled()):
-            dChkSum = random.randint()
-        else:
-            dChkSum = int(self.ChsumEdit.toPlainText())
+        dChkSum = int(self.ChsumEdit.toPlainText())
         dType = int(self.TypeEdit.toPlainText())
         dFrag = int(self.FragEdit.toPlainText())
         if (self.ResRadioBtn.isEnabled()):
@@ -100,15 +151,9 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         dTL = int(self.TLEdit.toPlainText())
         dIHL = int(self.IHLEdit.toPlainText())
 
-        if (self.MacSrcCheck.isEnabled()):
-            sSrcMAC = genRandMAC()
-        else:
-            sSrcMAC = self.MacSrcEdit.toPlainText()
 
-        if (self.MacDstCheck.isEnabled()):
-            sDstMAC = genRandMAC()
-        else:
-            sDstMAC = self.MacDstEdit.toPlainText()
+        sSrcMAC = self.MacSrcEdit.toPlainText()
+        sDstMAC = self.MacDstEdit.toPlainText()
 
         packet = IP(dst=sIPSrc, src=sIPDst, version = dIPVer, ihl = dIHl, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)
 
@@ -127,97 +172,49 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         dICMPMsg = 0
 # TCP
         if (dCurIdx == 0):
-            if (self.PortSrcCheck.toPlainText())
-                dPortSrc = random.randint()
-            else:
-                dPortSrc = int(self.PortSrcEdit.toPlainText())
 
-            if (self.PortDestCheck.toPlainText())
-                dPortDst = random.randint()
-            else:
-                dPortDst = int(self.PortDestEdit.toPlainText())
-
-            if (self.SeqNCheck.toPlainText())
-                dSeqNum = random.randint()
-            else:
-                dSeqNum = int(self.SeqNEdit.toPlainText())
-
-            if (self.AckNCheck.toPlainText())
-                dAckNum = random.randint()
-            else:
-                dAckNum = int(self.AckNEdit.toPlainText())                
-
-            if (self.WinCheck.toPlainText())
-                dWinNum = random.randint()
-            else:
-                dWinNum = int(self.WinEdit.toPlainText())  
-
-            if (self.UrgCheck.toPlainText())
-                dUrgNum = random.randint()
-            else:
-                dUrgNum = int(self.UrgEdit.toPlainText())  
-
+            dPortSrc = int(self.PortSrcEdit.toPlainText())
+            dPortDst = int(self.PortDestEdit.toPlainText())
+            dSeqNum = int(self.SeqNEdit.toPlainText())
+            dAckNum = int(self.AckNEdit.toPlainText())                
+            dWinNum = int(self.WinEdit.toPlainText())  
+            dUrgNum = int(self.UrgEdit.toPlainText())  
             dOff = int(self.OffsEdit.toPlainText())  
-
-            if (self.TCPChsumCheck.toPlainText())
-                dTCPChsum = random.randint()
-            else:
-                dTCPChsum = int(self.TCPChsumEdit.toPlainText())  
-
-            if (self.TCPChsumCheck.toPlainText())
-                dTCPChsum = random.randint()
-            else:
-                dTCPChsum = int(self.TCPChsumEdit.toPlainText())  
+            dTCPChsum = int(self.TCPChsumEdit.toPlainText())  
 
             dTCPFlags = 0x000000000
-            if (self.URGCheck.toPlainText())
+            if (self.URGCheck.isEnabled()):
                 dTCPFlags |= 0x000000001          
 
-            if (self.ACKCheck.toPlainText())
+            if (self.ACKCheck.isEnabled()):
                 dTCPFlags |= 0x000000010 
 
-            if (self.PSHCheck.toPlainText())
+            if (self.PSHCheck.isEnabled()):
                 dTCPFlags |= 0x000000100 
 
-            if (self.RSTCheck.toPlainText())
+            if (self.RSTCheck.isEnabled()):
                 dTCPFlags |= 0x000001000 
 
-            if (self.SYNCheck.toPlainText())
+            if (self.SYNCheck.isEnabled()):
                 dTCPFlags |= 0x000010000 
 
-            if (self.FINCheck.toPlainText())
+            if (self.FINCheck.isEnabled()):
                 dTCPFlags |= 0x000100000 
 
-            if (self.CWRCheck.toPlainText())
+            if (self.CWRCheck.isEnabled()):
                 dTCPFlags |= 0x001000000
 
-            if (self.ECECheck.toPlainText())
+            if (self.ECECheck.isEnabled()):
                 dTCPFlags |= 0x010000000
 
             packet /= TCP(sport = dPortSrc, dport = dPortDst, seq = dSeqNum, ack = dAckNum, dataofs = dOff, flags = dTCPFlags, windows = dWinNum, chksum = dTCPChsum, urgptr = dUrgNum)
 
 # UDP
         if (dCurIdx == 1):
-
-            if (self.UDPPortDestCheck.toPlainText())
-                dPortSrc = random.randint()
-            else:
-                dPortSrc = int(self.UDPPortSrcEdit.toPlainText())
-
-            if (self.UDPPortDestCheck.toPlainText())
-                dPortDst = random.randint()
-            else:
-                dPortDst = int(self.UDPPortDestEdit.toPlainText())
-
-            if (self.UDPChsumCheck.toPlainText())
-                dUDPChsum = random.randint()
-            else:
-                dUDPChsum = int(self.UDPChsumEdit.toPlainText())  
-
-            if (self.UDPLenCheck.toPlainText())
-                dUDPLen = random.randint()
-            else:
-                dUDPLen = int(self.UDPLenEdit.toPlainText())  
+            dPortSrc = int(self.UDPPortSrcEdit.toPlainText())
+            dPortDst = int(self.UDPPortDestEdit.toPlainText())
+            dUDPChsum = int(self.UDPChsumEdit.toPlainText())  
+            dUDPLen = int(self.UDPLenEdit.toPlainText())  
 
             packet /= UDP(sport = dPortSrc, dport = dPortDst, chksum = dUDPChsum, len = dUDPLen)
 
