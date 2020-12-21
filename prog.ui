@@ -37,166 +37,535 @@
      <x>9</x>
      <y>9</y>
      <width>741</width>
-     <height>121</height>
+     <height>421</height>
     </rect>
    </property>
    <property name="title">
     <string>IPv4</string>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="1" column="0">
-     <widget class="QGroupBox" name="IPSrcBox">
-      <property name="title">
-       <string>IP (source)</string>
+    <item row="1" column="1">
+     <widget class="QGroupBox" name="IPMACDestBox">
+      <property name="enabled">
+       <bool>true</bool>
       </property>
-      <widget class="QTextEdit" name="IPSrcEdit">
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QGroupBox" name="MacDestBox">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>30</y>
+         <y>100</y>
          <width>211</width>
-         <height>31</height>
+         <height>77</height>
         </rect>
        </property>
+       <property name="title">
+        <string>MAC (destination)</string>
+       </property>
+       <widget class="QTextEdit" name="MacDestEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="MacDestCheck">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>30</y>
+          <width>51</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>rand</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="IPDestBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>211</width>
+         <height>77</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>IP (destination)</string>
+       </property>
+       <widget class="QTextEdit" name="IPDstEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>191</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
     <item row="1" column="2">
      <widget class="QGroupBox" name="FragBox">
       <property name="title">
-       <string>Fragment offset</string>
+       <string>Fragment offset/Type</string>
       </property>
       <widget class="QTextEdit" name="FragEdit">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>111</width>
+         <width>101</width>
          <height>31</height>
         </rect>
        </property>
       </widget>
-      <widget class="QCheckBox" name="FragCheck">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>30</y>
-         <width>92</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>rand</string>
-       </property>
-      </widget>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QGroupBox" name="IPDestBox">
-      <property name="title">
-       <string>IP (destination)</string>
-      </property>
-      <widget class="QTextEdit" name="IPDstEdit">
+      <widget class="QGroupBox" name="FlagsBox">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>30</y>
+         <y>60</y>
          <width>211</width>
-         <height>31</height>
+         <height>61</height>
         </rect>
        </property>
+       <property name="title">
+        <string>Flags</string>
+       </property>
+       <widget class="QRadioButton" name="ResRadioBtn">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>51</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Res</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="DFRadioBtn">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>30</y>
+          <width>51</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>DF</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="MFRadioBtn">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>30</y>
+          <width>51</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>MF</string>
+        </property>
+       </widget>
       </widget>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QGroupBox" name="EthBox">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>140</y>
-     <width>741</width>
-     <height>121</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Ethernet</string>
-   </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="2">
-     <widget class="QGroupBox" name="TypeBox">
-      <property name="title">
-       <string>Type</string>
-      </property>
       <widget class="QTextEdit" name="TypeEdit">
        <property name="geometry">
         <rect>
+         <x>120</x>
+         <y>30</y>
+         <width>101</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="3">
+     <widget class="QGroupBox" name="AddBox">
+      <property name="title">
+       <string>Additional</string>
+      </property>
+      <widget class="QGroupBox" name="VersionBox">
+       <property name="geometry">
+        <rect>
          <x>10</x>
          <y>30</y>
+         <width>131</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Version</string>
+       </property>
+       <widget class="QTextEdit" name="VersionEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="ProtocolBox">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>30</y>
+         <width>131</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Protocol</string>
+       </property>
+       <widget class="QTextEdit" name="ProtocolEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>111</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="IDBox">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>30</y>
+         <width>111</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>ID</string>
+       </property>
+       <widget class="QTextEdit" name="IDEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="TTLBox">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>30</y>
+         <width>111</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>TTL</string>
+       </property>
+       <widget class="QTextEdit" name="TTLEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="ChsumBox">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>30</y>
+         <width>171</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Checksum</string>
+       </property>
+       <widget class="QTextEdit" name="ChsumEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="ChsumCheck">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>30</y>
+          <width>51</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>rand</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="PrecBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>131</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Precedence</string>
+       </property>
+       <widget class="QCheckBox" name="PrecCheckBox0">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>40</y>
+          <width>31</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="PrecCheckBox1">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>40</y>
+          <width>31</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="PrecCheckBox2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>31</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="ECNBox">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>100</y>
+         <width>131</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>ECN</string>
+       </property>
+       <widget class="QCheckBox" name="ECNCheckBox0">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>40</y>
+          <width>31</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="ECNCheckBox1">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>31</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="TLBox">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>100</y>
+         <width>61</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>TL</string>
+       </property>
+       <widget class="QTextEdit" name="TLEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="IHLBox">
+       <property name="geometry">
+        <rect>
+         <x>480</x>
+         <y>100</y>
+         <width>61</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>IHL</string>
+       </property>
+       <widget class="QTextEdit" name="IHLEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>41</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QCheckBox" name="DelayCheck">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>110</y>
+         <width>71</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Delay</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="ReliabCheck">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>150</y>
+         <width>91</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Reliability</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="ThrCheck">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>130</y>
+         <width>111</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Throughput</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="IPMACSrcBox">
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QGroupBox" name="MacSrcBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
          <width>211</width>
-         <height>31</height>
+         <height>77</height>
         </rect>
        </property>
+       <property name="title">
+        <string>MAC (source)</string>
+       </property>
+       <widget class="QTextEdit" name="MacSrcEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="MacSrcCheck">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>30</y>
+          <width>51</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>rand</string>
+        </property>
+       </widget>
       </widget>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QGroupBox" name="MacSrcBox">
-      <property name="title">
-       <string>MAC (source)</string>
-      </property>
-      <widget class="QTextEdit" name="MacSrcEdit">
+      <widget class="QGroupBox" name="IPSrcBox">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>30</y>
-         <width>111</width>
-         <height>31</height>
+         <y>20</y>
+         <width>211</width>
+         <height>77</height>
         </rect>
        </property>
-      </widget>
-      <widget class="QCheckBox" name="MacSrcCheck">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>30</y>
-         <width>92</width>
-         <height>23</height>
-        </rect>
+       <property name="title">
+        <string>IP (source)</string>
        </property>
-       <property name="text">
-        <string>rand</string>
-       </property>
-      </widget>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QGroupBox" name="MacDestBox">
-      <property name="title">
-       <string>MAC (destination)</string>
-      </property>
-      <widget class="QTextEdit" name="MacDestEdit">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>111</width>
-         <height>31</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="MacDestCheck">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>30</y>
-         <width>92</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>rand</string>
-       </property>
+       <widget class="QTextEdit" name="IPSrcEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>191</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -206,7 +575,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>280</y>
+     <y>430</y>
      <width>741</width>
      <height>281</height>
     </rect>
@@ -950,335 +1319,11 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="AddBox">
+  <widget class="QPushButton" name="sendButton">
    <property name="geometry">
     <rect>
      <x>760</x>
      <y>10</y>
-     <width>741</width>
-     <height>251</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Additional</string>
-   </property>
-   <widget class="QGroupBox" name="VersionBox">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>131</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Version</string>
-    </property>
-    <widget class="QTextEdit" name="VersionEdit">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>111</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="ProtocolBox">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>30</y>
-      <width>131</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Protocol</string>
-    </property>
-    <widget class="QTextEdit" name="ProtocolEdit">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>111</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="IDBox">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>30</y>
-      <width>111</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>ID</string>
-    </property>
-    <widget class="QTextEdit" name="IDEdit">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="TTLBox">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>30</y>
-      <width>111</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>TTL</string>
-    </property>
-    <widget class="QTextEdit" name="TTLEdit">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>91</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="ChsumBox">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>30</y>
-      <width>201</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Checksum</string>
-    </property>
-    <widget class="QTextEdit" name="ChsumEdit">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>121</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ChsumCheck">
-     <property name="geometry">
-      <rect>
-       <x>140</x>
-       <y>30</y>
-       <width>51</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>rand</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QGroupBox" name="ServiceBox">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>120</y>
-      <width>721</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Services</string>
-    </property>
-    <widget class="QGroupBox" name="PrecBox">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>131</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>Precedence</string>
-     </property>
-     <widget class="QTextEdit" name="PrecEdit">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="ECNBox">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>30</y>
-       <width>131</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>ECN</string>
-     </property>
-     <widget class="QTextEdit" name="ECNEdit">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>111</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QCheckBox" name="DeayCheck">
-     <property name="geometry">
-      <rect>
-       <x>290</x>
-       <y>30</y>
-       <width>71</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Delay</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ReliabCheck">
-     <property name="geometry">
-      <rect>
-       <x>290</x>
-       <y>60</y>
-       <width>91</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Reliability</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="ThrCheck">
-     <property name="geometry">
-      <rect>
-       <x>290</x>
-       <y>90</y>
-       <width>111</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Throughput</string>
-     </property>
-    </widget>
-    <widget class="QGroupBox" name="TLBox">
-     <property name="geometry">
-      <rect>
-       <x>400</x>
-       <y>30</y>
-       <width>61</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>TL</string>
-     </property>
-     <widget class="QTextEdit" name="TLEdit">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>41</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QGroupBox" name="IHLBox">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>30</y>
-       <width>61</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <property name="title">
-      <string>IHL</string>
-     </property>
-     <widget class="QTextEdit" name="IHLEdit">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>41</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QCheckBox" name="ResCheck">
-     <property name="geometry">
-      <rect>
-       <x>540</x>
-       <y>30</y>
-       <width>91</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Reserved</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="DFCheck">
-     <property name="geometry">
-      <rect>
-       <x>540</x>
-       <y>60</y>
-       <width>91</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>DF</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="MFCheck">
-     <property name="geometry">
-      <rect>
-       <x>540</x>
-       <y>90</y>
-       <width>91</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>MF</string>
-     </property>
-    </widget>
-   </widget>
-  </widget>
-  <widget class="QPushButton" name="sendButton">
-   <property name="geometry">
-    <rect>
-     <x>770</x>
-     <y>310</y>
      <width>89</width>
      <height>25</height>
     </rect>
@@ -1290,8 +1335,8 @@
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>870</x>
-     <y>310</y>
+     <x>760</x>
+     <y>40</y>
      <width>89</width>
      <height>25</height>
     </rect>
