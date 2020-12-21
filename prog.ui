@@ -62,11 +62,11 @@
      </widget>
     </item>
     <item row="1" column="2">
-     <widget class="QGroupBox" name="FragentBox">
+     <widget class="QGroupBox" name="FragBox">
       <property name="title">
        <string>Fragment offset</string>
       </property>
-      <widget class="QTextEdit" name="FragentEdit">
+      <widget class="QTextEdit" name="FragEdit">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -76,7 +76,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QCheckBox" name="FragentCheck">
+      <widget class="QCheckBox" name="FragCheck">
        <property name="geometry">
         <rect>
          <x>130</x>
@@ -96,7 +96,7 @@
       <property name="title">
        <string>IP (destination)</string>
       </property>
-      <widget class="QTextEdit" name="IPEditBox">
+      <widget class="QTextEdit" name="IPDstEdit">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -647,7 +647,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="UDPBox">
+   <widget class="QWidget" name="UDPTab">
     <attribute name="title">
      <string>UDP</string>
     </attribute>
@@ -796,7 +796,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="ICMPBox">
+   <widget class="QWidget" name="ICMPTab">
     <attribute name="title">
      <string>ICMP</string>
     </attribute>
@@ -1273,6 +1273,32 @@
      </property>
     </widget>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="sendButton">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>310</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Send</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>870</x>
+     <y>310</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
   </widget>
  </widget>
  <resources/>
