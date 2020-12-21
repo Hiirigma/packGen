@@ -2,11 +2,14 @@
 <ui version="4.0">
  <class>Dialog</class>
  <widget class="QDialog" name="Dialog">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>856</width>
+    <width>1509</width>
     <height>748</height>
    </rect>
   </property>
@@ -16,14 +19,14 @@
   <property name="tabletTracking">
    <bool>false</bool>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::DefaultContextMenu</enum>
+  </property>
   <property name="acceptDrops">
    <bool>false</bool>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
-  </property>
-  <property name="sizeGripEnabled">
-   <bool>false</bool>
   </property>
   <widget class="QGroupBox" name="IPv4Box">
    <property name="enabled">
@@ -41,12 +44,12 @@
     <string>IPv4</string>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="1" column="1">
-     <widget class="QGroupBox" name="IPDestBox">
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="IPSrcBox">
       <property name="title">
-       <string>IP (destination)</string>
+       <string>IP (source)</string>
       </property>
-      <widget class="QTextEdit" name="IPEditBox">
+      <widget class="QTextEdit" name="IPSrcEdit">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -88,12 +91,12 @@
       </widget>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QGroupBox" name="IPSrcBox">
+    <item row="1" column="1">
+     <widget class="QGroupBox" name="IPDestBox">
       <property name="title">
-       <string>IP (source)</string>
+       <string>IP (destination)</string>
       </property>
-      <widget class="QTextEdit" name="IPSrcEdit">
+      <widget class="QTextEdit" name="IPEditBox">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -950,10 +953,10 @@
   <widget class="QGroupBox" name="AddBox">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>570</y>
+     <x>760</x>
+     <y>10</y>
      <width>741</width>
-     <height>241</height>
+     <height>251</height>
     </rect>
    </property>
    <property name="title">
@@ -1091,7 +1094,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>110</y>
+      <y>120</y>
       <width>721</width>
       <height>121</height>
      </rect>
