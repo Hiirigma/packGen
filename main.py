@@ -122,7 +122,7 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         if (self.IHLEdit.toPlainText() != ''):
             dIPIhl = int(self.IHLEdit.toPlainText())
         else:
-            dIPVer = None
+            dIPIhl = None
 
         if (self.IDEdit.toPlainText() != ''):    
             dIPID = int(self.IDEdit.toPlainText())
@@ -140,12 +140,16 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
             dChkSum = None
 
 
-        sProto = self.ProtocolEdit.toPlainText()
+        if (self.ProtocolEdit.toPlainText() != ''):
+            sProto = self.ProtocolEdit.toPlainText()
+        else:
+            sProto = 'ip'
+
 
         if (self.TypeEdit.toPlainText() != ''):
             dType = int(self.TypeEdit.toPlainText())
         else:
-            dType = 'tcp'
+            dType = None
         
         if (self.FragEdit.toPlainText() != ''):
             dFrag = int(self.FragEdit.toPlainText())
@@ -242,12 +246,12 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
             if (self.OffsEdit.toPlainText() != ''):
                 dOff = int(self.OffsEdit.toPlainText())  
             else:
-                dOff = None
+                dOff = 0
             
             if(self.TCPChsumEdit.toPlainText() != ''):
                 dTCPChsum = int(self.TCPChsumEdit.toPlainText()) 
             else:
-                dTCPChsum = None
+                dTCPChsum = 0
 
             dTCPFlags = 0x000000000
             if (self.URGCheck.isChecked()):
@@ -274,7 +278,7 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
             if (self.ECECheck.isChecked()):
                 dTCPFlags |= 0x010000000
 
-            packet = IP(dst=sIPSrc, src=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)/TCP(sport = dPortSrc, dport = dPortDst, seq = dSeqNum, ack = dAckNum, dataofs = dOff, flags = dTCPFlags, window = dWinNum, chksum = dTCPChsum, urgptr = dUrgNum)/self.FinalDataEdit.toPlainText()
+            packet = IP(src=sIPSrc, dst=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)/TCP(sport = dPortSrc, dport = dPortDst, seq = dSeqNum, ack = dAckNum, dataofs = dOff, flags = dTCPFlags, window = dWinNum, chksum = dTCPChsum, urgptr = dUrgNum)/self.FinalDataEdit.toPlainText()
 
 # UDP
         if (dCurIdx == 1):
@@ -298,35 +302,42 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
             else:
                 dUDPLen = None
 
-            packet = IP(dst=sIPSrc, src=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum) / UDP(sport = dPortSrc, dport = dPortDst, chksum = dUDPChsum, len = dUDPLen)/self.FinalDataEdit.toPlainText()
+            packet = IP(src=sIPSrc, dst=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum) / UDP(sport = dPortSrc, dport = dPortDst, chksum = dUDPChsum, len = dUDPLen)/self.FinalDataEdit.toPlainText()
 
 # ICMP   
         if (dCurIdx == 2):
             if (self.CodeICMPEdit.toPlainText() != ''):
                 dICMPCode = int(self.CodeICMPEdit.toPlainText())  
             else:
-                dICMPCode = 0
+                dICMPCode = None
+
             if (self.IDICMPEdit.toPlainText() != ''):
                 dICMPID = int(self.IDICMPEdit.toPlainText())  
             else:
-                dICMPID = 0
+                dICMPID = None
+
             if (self.SeqICMPEdit.toPlainText() != ''):
                 dICMPSeq = int(self.SeqICMPEdit.toPlainText())  
             else:
-                dICMPSeq = 0
+                dICMPSeq = None
+
             dIdx = self.ICMPMCombo.currentIndex()
             if (dIdx == 0):
                 dICMPMsg = 0
             else:
                 dICMPMsg = 8
             
-            packet = IP(dst=sIPSrc, src=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)/ICMP(type = dICMPMsg, code = dICMPCode, id = dICMPID, seq = dICMPSeq)/self.FinalDataEdit.toPlainText()
+            packet = IP(src=sIPSrc, dst=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)/ICMP(type = dICMPMsg, code = dICMPCode, id = dICMPID)/self.FinalDataEdit.toPlainText()
 
         
 
 
         sAdapter = self.AdapterComboBox.currentText()
-        sendp(packet,sAdapter)
+        if (sAdapter != 'lo'):
+            sendp(Ether()/packet,iface=sAdapter)
+        else:
+            sendp(Loopback()/packet,iface=sAdapter)
+
         print ('Packet send')    
 
 def main():
