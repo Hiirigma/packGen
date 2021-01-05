@@ -338,7 +338,7 @@ class Ui_Dialog(object):
         self.DataEdit.setGeometry(QtCore.QRect(10, 30, 721, 111))
         self.DataEdit.setObjectName("DataEdit")
         self.sendButton = QtWidgets.QPushButton(Dialog)
-        self.sendButton.setGeometry(QtCore.QRect(1250, 270, 89, 25))
+        self.sendButton.setGeometry(QtCore.QRect(1150, 270, 89, 25))
         self.sendButton.setObjectName("sendButton")
         self.cancelButton = QtWidgets.QPushButton(Dialog)
         self.cancelButton.setGeometry(QtCore.QRect(1350, 270, 89, 25))
@@ -349,6 +349,9 @@ class Ui_Dialog(object):
         self.AdapterComboBox = QtWidgets.QComboBox(Dialog)
         self.AdapterComboBox.setGeometry(QtCore.QRect(770, 30, 431, 25))
         self.AdapterComboBox.setObjectName("AdapterComboBox")
+        self.queueButton = QtWidgets.QPushButton(Dialog)
+        self.queueButton.setGeometry(QtCore.QRect(1250, 270, 89, 25))
+        self.queueButton.setObjectName("queueButton")
 
         self.retranslateUi(Dialog)
         self.PacketTabWidget.setCurrentIndex(2)
@@ -431,3 +434,4 @@ class Ui_Dialog(object):
         self.DataBox.setTitle(_translate("Dialog", "Data"))
         self.sendButton.setText(_translate("Dialog", "Send"))
         self.cancelButton.setText(_translate("Dialog", "Cancel"))
+        self.queueButton.setText(_translate("Dialog", "Queue"))

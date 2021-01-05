@@ -4,9 +4,27 @@ import PaGeMain
 import random
 from scapy.all import *
 
+
 class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
-    dbg = 1
+    dbg = 0
     dIPFlag = 0
+    bUDPLen = False
+    bUDPChsum = False
+    bPortSrc = False
+    bPortDst = False
+    bTCPChsum = False
+    bUrgNum = False
+    bWinNum = False
+    bAckNum = False
+    bSeqNum = False
+    bPortSrc2 = False
+    bPortDst2 = False
+    bChkSum = False
+    bDstMAC = False
+    bSrcMAC = False
+    dPacketCnt = 0
+
+    lPacketList = [0 for i in range(64)]
 
     def log_write(self,sMsg):
         if self.dbg == 1:
@@ -14,15 +32,17 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
 
 
     def __init__(self):
-        # Это здесь нужно для доступа к переменным, методам
-        # и т.д. в файле design.py
         super().__init__()
-        self.setupUi(self)  # Это нужно для инициализации нашего дизайна
+        self.setupUi(self)
+
         adapt_list = get_if_list()
         for adapt in adapt_list:
             self.AdapterComboBox.addItem(adapt)
+        
         self.cancelButton.clicked.connect(self.ex_prog)
         self.sendButton.clicked.connect(self.send_packet)
+        self.queueButton.clicked.connect(self.create_packet)
+
         self.MacDestCheck.clicked.connect(self.updMacDest)
         self.MacSrcCheck.clicked.connect(self.updMacSrc)
         self.ChsumCheck.clicked.connect(self.updChSum)
@@ -40,62 +60,138 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         self.UDPPortDestCheck.clicked.connect(self.updUDPdPortDst)
 
     def upddUDPLen(self): 
-        dUDPLen = random.randint(0,65535)
-        self.UDPLenEdit.setText(str(dUDPLen))
+        if self.bUDPLen == False:
+            dUDPLen = random.randint(0,65535)
+            self.UDPLenEdit.setText(str(dUDPLen))
+            self.bUDPLen = True
+        else:
+            self.bUDPLen = False
+            self.UDPLenEdit.clear()
 
     def upddUDPChsum(self): 
-        dUDPChsum = random.randint(0,65535)
-        self.UDPChsumEdit.setText(str(dUDPChsum))
+        if self.bUDPChsum == False:
+            dUDPChsum = random.randint(0,65535)
+            self.UDPChsumEdit.setText(str(dUDPChsum))
+            self.bUDPChsum = True
+        else:
+            self.UDPChsumEdit.clear()
+
+            bUDPChsum = False
 
     def updUDPdPortSrc(self): 
-        dPortSrc = random.randint(0,65535)
-        self.UDPPortSrcEdit.setText(str(dPortSrc))
+        if self.bPortSrc == False:
+            dPortSrc = random.randint(0,65535)
+            self.UDPPortSrcEdit.setText(str(dPortSrc))
+            self.bPortSrc = True
+        else:
+            self.UDPPortSrcEdit.clear()
+            self.bPortSrc = False
+
 
     def updUDPdPortDst(self): 
-        dPortDst = random.randint(0,65535)
-        self.UDPPortDestEdit.setText(str(dPortDst))
+        if bPortDst == False:
+            self.dPortDst = random.randint(0,65535)
+            self.UDPPortDestEdit.setText(str(dPortDst))
+            self.bPortDst = True
+        else:
+            self.UDPPortDestEdit.clear()
+            self.bPortDst = False
 
-    def upddTCPChsum(self): 
-        dTCPChsum = random.randint(0,65535)
-        self.TCPChsumEdit.setText(str(dTCPChsum))
+    def upddTCPChsum(self):
+        if self.bTCPChsum == False:
+            dTCPChsum = random.randint(0,65535)
+            self.TCPChsumEdit.setText(str(dTCPChsum))
+            self.bTCPChsum = True
+        else:
+            self.TCPChsumEdit.clear()
+            self.bTCPChsum = False
 
     def upddUrgNum(self): 
-        dUrgNum = random.randint(0,65535)
-        self.UrgEdit.setText(str(dUrgNum))
+        if self.bUrgNum == False:
+            dUrgNum = random.randint(0,65535)
+            self.UrgEdit.setText(str(dUrgNum))
+            self.bUrgNum = True
+        else:
+            self.UrgEdit.clear()
+            self.bUrgNum = False
+
 
     def upddWinNum(self): 
-        dWinNum = random.randint(0,65535)
-        self.WinEdit.setText(str(dWinNum))
+        if self.bWinNum == False:
+            dWinNum = random.randint(0,65535)
+            self.WinEdit.setText(str(dWinNum))
+            self.bWinNum = True
+        else:
+            self.WinEdit.clear()
+            self.bWinNum = False
+
 
     def upddAckNum(self): 
-        dAckNum = random.randint(0,65535)
-        self.AckNEdit.setText(str(dAckNum))
+        if self.bAckNum == False:
+            dAckNum = random.randint(0,65535)
+            self.AckNEdit.setText(str(dAckNum))
+            self.bAckNum = True
+        else:
+            self.AckNEdit.clear()
+            self.bAckNum = False
+
+
 
     def upddSeqNum(self): 
-        dSeqNum = random.randint(0,65535)
-        self.SeqNEdit.setText(str(dSeqNum))
+        if self.bSeqNum == False:
+            dSeqNum = random.randint(0,65535)
+            self.SeqNEdit.setText(str(dSeqNum))
+            self.bSeqNum = True
+        else:
+            self.SeqNEdit.clear()
+            self.bSeqNum = True
 
 
     def updSPort(self):
-        dPortSrc = random.randint(0,65535)
-        self.PortSrcEdit.setText(str(dPortSrc))
+        if self.bPortSrc2 == False:
+            dPortSrc = random.randint(0,65535)
+            self.PortSrcEdit.setText(str(dPortSrc))
+            self.bPortSrc2 = True
+        else:
+            self.PortSrcEdit.clear()
+            self.bPortSrc2 = False
 
     def updDPort(self):
-        dPortDst = random.randint(0,65535)
-        self.PortDestEdit.setText(str(dPortDst))
+        if self.bPortDst2 == False:
+            dPortDst = random.randint(0,65535)
+            self.PortDestEdit.setText(str(dPortDst))
+            self.bPortDst2 = True
+        else:
+            self.PortDestEdit.clear()
+            self.bPortDst2 = False
 
     def updChSum(self):
-        dChkSum = random.randint(0,65535)
-        self.ChsumEdit.setText(str(dChkSum))
+        if self.bChkSum == False:
+            dChkSum = random.randint(0,65535)
+            self.ChsumEdit.setText(str(dChkSum))
+            self.bChkSum = True
+        else:
+            self.ChsumEdit.clear()
+            self.bChkSum = False
 
 
     def updMacDest(self):
-        sDstMAC = self.genRandMAC()
-        self.MacDestEdit.setText(sDstMAC)
+        if self.bDstMAC == False:
+            sDstMAC = self.genRandMAC()
+            self.MacDestEdit.setText(sDstMAC)
+            self.bDstMAC = True
+        else:
+            self.MacDestEdit.clear()
+            self.bDstMAC = False
 
     def updMacSrc(self):
-        sSrcMAC = self.genRandMAC()
-        self.MacSrcEdit.setText(sSrcMAC)
+        if self.bSrcMAC == False:
+            sSrcMAC = self.genRandMAC()
+            self.MacSrcEdit.setText(sSrcMAC)
+            self.bSrcMAC = True
+        else:
+            self.MacSrcEdit.clear()
+            self.bSrcMAC = False
 
 
     def genRandMAC(self):
@@ -107,7 +203,9 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         print ('Close app')
         exit(0)
 
-    def send_packet(self):
+
+
+    def create_packet(self):
         sTarget = ""
         dCurIdx = self.PacketTabWidget.currentIndex()
         self.log_write("Log: Target: " + sTarget)
@@ -328,17 +426,28 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
                 dICMPMsg = 8
             
             packet = IP(src=sIPSrc, dst=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)/ICMP(type = dICMPMsg, code = dICMPCode, id = dICMPID)/self.FinalDataEdit.toPlainText()
-
+            
         
+        self.lPacketList.append(packet)
+        self.dPacketCnt+=1
 
 
+
+    def send_packet(self):
+        if self.dPacketCnt == 0:
+            self.create_packet()
+        
         sAdapter = self.AdapterComboBox.currentText()
-        if (sAdapter != 'lo'):
-            sendp(Ether()/packet,iface=sAdapter)
-        else:
-            sendp(Loopback()/packet,iface=sAdapter)
 
-        print ('Packet send')    
+        for i in range(self.dPacketCnt):
+            if (sAdapter != 'lo'):
+                sendp(Ether()/self.lPacketList[i],iface=sAdapter)
+            else:
+                sendp(Loopback()/self.lPacketList[i],iface=sAdapter)
+
+        self.lPacketList.clear()
+        self.dPacketCnt = 0
+  
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
