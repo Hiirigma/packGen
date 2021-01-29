@@ -24,7 +24,7 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
     bSrcMAC = False
     dPacketCnt = 0
 
-    lPacketList = [0 for i in range(64)]
+    lPacketList = []
 
     def log_write(self,sMsg):
         if self.dbg == 1:
@@ -206,226 +206,166 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
 
 
     def create_packet(self):
+
+        ipPacket = IP()
         sTarget = ""
         dCurIdx = self.PacketTabWidget.currentIndex()
         self.log_write("Log: Target: " + sTarget)
 
-        sIPSrc = self.IPSrcEdit.toPlainText()
-        sIPDst = self.IPDstEdit.toPlainText()
+        ipPacket.src = self.IPSrcEdit.toPlainText()
+        ipPacket.dst = self.IPDstEdit.toPlainText()
         if (self.VersionEdit.toPlainText() != ''):
-            dIPVer = int(self.VersionEdit.toPlainText())
-        else:
-            dIPVer = 4
+            ipPacket.version = int(self.VersionEdit.toPlainText())
 
         if (self.IHLEdit.toPlainText() != ''):
-            dIPIhl = int(self.IHLEdit.toPlainText())
-        else:
-            dIPIhl = None
+            ipPacket.ihl = int(self.IHLEdit.toPlainText())
 
         if (self.IDEdit.toPlainText() != ''):    
-            dIPID = int(self.IDEdit.toPlainText())
-        else:
-            dIPID = 1
+            ipPacket.id = int(self.IDEdit.toPlainText())
 
         if (self.TTLEdit.toPlainText() != ''):
-            dTTL = int(self.TTLEdit.toPlainText())
-        else:
-            dTTL = 64
+            ipPacket.ttl = int(self.TTLEdit.toPlainText())
         
         if (self.ChsumEdit.toPlainText() != ''):
-            dChkSum = int(self.ChsumEdit.toPlainText())
-        else:
-            dChkSum = None
-
+            ipPacket.chksum = int(self.ChsumEdit.toPlainText())
 
         if (self.ProtocolEdit.toPlainText() != ''):
-            sProto = self.ProtocolEdit.toPlainText()
-        else:
-            sProto = 'ip'
-
+            ipPacket.proto = self.ProtocolEdit.toPlainText()
 
         if (self.TypeEdit.toPlainText() != ''):
-            dType = int(self.TypeEdit.toPlainText())
-        else:
-            dType = None
+            ipPacket.type = int(self.TypeEdit.toPlainText())
         
         if (self.FragEdit.toPlainText() != ''):
-            dFrag = int(self.FragEdit.toPlainText())
-        else:
-            dFrag = 0
+            ipPacket.frag = int(self.FragEdit.toPlainText())
 
-        dIPFlag = 0
         if (self.ResRadioBtn.isChecked()):
-            dIPFlag = 0
+            ipPacket.flags = 0
         if (self.DFRadioBtn.isChecked()):
-            dIPFlag = 1
+            ipPacket.flags = 1
         if (self.MFRadioBtn.isChecked()):
-            dIPFlag = 2
+            ipPacket.flags = 2
 
         dTOS = 0
         
         if (self.PrecCheckBox0.isChecked()):
-            dTOS |= 0x0000001
+            dTOS |= 0x001
+            ipPacket.tos = dTos
         if (self.PrecCheckBox1.isChecked()):
-            dTOS |= 0x0000010
-        if (self.PrecCheckBox2.isChecked()):
-            dTOS |= 0x0000100
-        if (self.DelayCheck.isChecked()):
-            dTOS |= 0x0001000
-        if (self.ThrCheck.isChecked()):
-            dTOS |= 0x0001000
-        if (self.ReliabCheck.isChecked()):
-            dTOS |= 0x0010000
-        if (self.ECNCheckBox0.isChecked()):
-            dTOS |= 0x0100000
-        if (self.ECNCheckBox1.isChecked()):
-            dTOS |= 0x1000000
-    
+            dTOS |= 0x010
+            ipPacket.tos = dTos
+
 
         if (self.TLEdit.toPlainText() != ''):
-            dTL = int(self.TLEdit.toPlainText())
-        else:
-            dTL = None
+            ipPacket.len = int(self.TLEdit.toPlainText())
         
         if (self.IHLEdit.toPlainText() != ''):
-            dIHL = int(self.IHLEdit.toPlainText())
-        else:
-            dIHL = None
-
+            ipPacket.ihl = int(self.IHLEdit.toPlainText())
 
         sSrcMAC = self.MacSrcEdit.toPlainText()
         sDstMAC = self.MacDestEdit.toPlainText()
 
-        dPortSrc = 0
-        dPortDst = 0
-        dSeqNum = 0
-        dAckNum = 0
-        dWinNum = 0
-        dTCPChsum = 0
-        dUDPChsum = 0
-        dUDPLen = 0
-        dICMPType = 0
-        dICMPCode = 0
-        dICMPID = 0
-        dICMPSeq = 0
-        dICMPMsg = 0
+        if (sSrcMAC != ""):
+            ipPacket.src = sSrcMAC
+        
+        if (sDstMAC != ""):
+            ipPacket.dst = sDstMAC
+        
+        tcp_packet = TCP()
 # TCP
         if (dCurIdx == 0):
             if (self.PortSrcEdit.toPlainText() != ''):
-                dPortSrc = int(self.PortSrcEdit.toPlainText())
-            else:
-                dPortStc = 21
+                tcp_packet.sport = int(self.PortSrcEdit.toPlainText())
             
             if (self.PortDestEdit.toPlainText() != ''):
-                dPortDst = int(self.PortDestEdit.toPlainText())
-            else:
-                dPortDst = 80
+                tcp_packet.dport = int(self.PortDestEdit.toPlainText())
 
             if (self.SeqNEdit.toPlainText() != ''):
-                dSeqNum = int(self.SeqNEdit.toPlainText())
-            else:
-                dSeqNum = 0
+                tcp_packet.seq = int(self.SeqNEdit.toPlainText())
             
             if (self.AckNEdit.toPlainText() != ''):
-                dAckNum = int(self.AckNEdit.toPlainText())  
-            else:
-                dAckNum = 0
+                tcp_packet.ack = int(self.AckNEdit.toPlainText())  
 
             if (self.WinEdit.toPlainText() != ''):              
-                dWinNum = int(self.WinEdit.toPlainText())  
-            else:
-                dWinNum = 8192
+                tcp_packet.window = int(self.WinEdit.toPlainText())  
             
             if (self.UrgEdit.toPlainText() != ''):
-                dUrgNum = int(self.UrgEdit.toPlainText())  
-            else:
-                dUrgNum = 0
+                tcp_packet.urgptr = int(self.UrgEdit.toPlainText())  
             
             if (self.OffsEdit.toPlainText() != ''):
-                dOff = int(self.OffsEdit.toPlainText())  
-            else:
-                dOff = 0
+                tcp_packet.dataofs = int(self.OffsEdit.toPlainText())  
             
             if(self.TCPChsumEdit.toPlainText() != ''):
-                dTCPChsum = int(self.TCPChsumEdit.toPlainText()) 
-            else:
-                dTCPChsum = 0
+                tcp_packet.chksum = int(self.TCPChsumEdit.toPlainText()) 
 
-            dTCPFlags = 0x000000000
-            if (self.URGCheck.isChecked()):
-                dTCPFlags |= 0x000000001          
-
-            if (self.ACKCheck.isChecked()):
-                dTCPFlags |= 0x000000010 
-
-            if (self.PSHCheck.isChecked()):
-                dTCPFlags |= 0x000000100 
-
-            if (self.RSTCheck.isChecked()):
-                dTCPFlags |= 0x000001000 
-
-            if (self.SYNCheck.isChecked()):
-                dTCPFlags |= 0x000010000 
+            dTCPFlags = 0x00
 
             if (self.FINCheck.isChecked()):
-                dTCPFlags |= 0x000100000 
+                dTCPFlags |= 0x01 
 
-            if (self.CWRCheck.isChecked()):
-                dTCPFlags |= 0x001000000
+            if (self.SYNCheck.isChecked()):
+                dTCPFlags |= 0x02    
+
+            if (self.RSTCheck.isChecked()):
+                dTCPFlags |= 0x04
+
+            if (self.PSHCheck.isChecked()):
+                dTCPFlags |= 0x08
+
+            if (self.ACKCheck.isChecked()):
+                dTCPFlags |= 0x10
+
+            if (self.URGCheck.isChecked()):
+                dTCPFlags |= 0x20    
 
             if (self.ECECheck.isChecked()):
-                dTCPFlags |= 0x010000000
+                dTCPFlags |= 0x40
 
-            packet = IP(src=sIPSrc, dst=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)/TCP(sport = dPortSrc, dport = dPortDst, seq = dSeqNum, ack = dAckNum, dataofs = dOff, flags = dTCPFlags, window = dWinNum, chksum = dTCPChsum, urgptr = dUrgNum)/self.FinalDataEdit.toPlainText()
+            if (self.CWRCheck.isChecked()):
+                dTCPFlags |= 0x80
+
+            if (self.ECECheck.isChecked()):
+                dTCPFlags |= 0x40
+
+            tcp_packet.flags = dTCPFlags
+
+            packet = ipPacket/tcp_packet/self.FinalDataEdit.toPlainText()
 
 # UDP
+        udp_packet = UDP()
         if (dCurIdx == 1):
             if (self.UDPPortSrcEdit.toPlainText() != ''):
-                dPortSrc = int(self.UDPPortSrcEdit.toPlainText())
-            else:
-                dPortSrc = 21
+                udp_packet.sport = int(self.UDPPortSrcEdit.toPlainText())
 
             if (self.UDPPortDestEdit.toPlainText() != ''):
-                dPortDst = int(self.UDPPortDestEdit.toPlainText())
-            else:
-                dPortDst = 80
+                udp_packet.dport = int(self.UDPPortDestEdit.toPlainText())
             
             if (self.UDPChsumEdit.toPlainText() != ''):
-                dUDPChsum = int(self.UDPChsumEdit.toPlainText())  
-            else:
-                dUDPChsum = None
+                udp_packet.chksum = int(self.UDPChsumEdit.toPlainText())  
             
             if (self.UDPLenEdit.toPlainText() != ''):
-                dUDPLen = int(self.UDPLenEdit.toPlainText())  
-            else:
-                dUDPLen = None
+                udp_packet.len = int(self.UDPLenEdit.toPlainText())  
 
-            packet = IP(src=sIPSrc, dst=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum) / UDP(sport = dPortSrc, dport = dPortDst, chksum = dUDPChsum, len = dUDPLen)/self.FinalDataEdit.toPlainText()
+            packet = ipPacket/udp_packet/self.FinalDataEdit.toPlainText()
 
 # ICMP   
+        icmp_packet = ICMP()
         if (dCurIdx == 2):
             if (self.CodeICMPEdit.toPlainText() != ''):
-                dICMPCode = int(self.CodeICMPEdit.toPlainText())  
-            else:
-                dICMPCode = None
+                icmp_packet.code = int(self.CodeICMPEdit.toPlainText())  
 
             if (self.IDICMPEdit.toPlainText() != ''):
-                dICMPID = int(self.IDICMPEdit.toPlainText())  
-            else:
-                dICMPID = None
+                icmp_packet.id = int(self.IDICMPEdit.toPlainText())  
 
             if (self.SeqICMPEdit.toPlainText() != ''):
-                dICMPSeq = int(self.SeqICMPEdit.toPlainText())  
-            else:
-                dICMPSeq = None
+                icmp_packet.seq = int(self.SeqICMPEdit.toPlainText())  
 
             dIdx = self.ICMPMCombo.currentIndex()
             if (dIdx == 0):
-                dICMPMsg = 0
+                icmp_packet.type = 0
             else:
-                dICMPMsg = 8
+                icmp_packet.type = 8
             
-            packet = IP(src=sIPSrc, dst=sIPDst, version = dIPVer, ihl = dIHL, tos = dTOS, len = dTL, id = dIPID, flags = dIPFlag, frag = dFrag, ttl = dTTL, proto = sProto, chksum = dChkSum)/ICMP(type = dICMPMsg, code = dICMPCode, id = dICMPID)/self.FinalDataEdit.toPlainText()
+            packet = ipPacket/icmp_packet/self.FinalDataEdit.toPlainText()
             
         
         self.lPacketList.append(packet)
