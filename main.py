@@ -323,9 +323,6 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
             if (self.CWRCheck.isChecked()):
                 dTCPFlags |= 0x80
 
-            if (self.ECECheck.isChecked()):
-                dTCPFlags |= 0x40
-
             tcp_packet.flags = dTCPFlags
 
             packet = ipPacket/tcp_packet/self.FinalDataEdit.toPlainText()
