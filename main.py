@@ -23,6 +23,8 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
     bDstMAC = False
     bSrcMAC = False
     dPacketCnt = 0
+    bICMPChkSum = False
+
 
     lPacketList = []
 
@@ -53,11 +55,13 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         self.WinCheck.clicked.connect(self.upddWinNum)
         self.AckNCheck.clicked.connect(self.upddAckNum)
         self.SeqNCheck.clicked.connect(self.upddSeqNum)
-        
+        self.ChsumCheckICMP.clicked.connect(self.upddChkSumICMP)
         self.UDPLenCheck.clicked.connect(self.upddUDPLen)
         self.UDPChsumCheck.clicked.connect(self.upddUDPChsum)
         self.UDPPortSrcCheck.clicked.connect(self.updUDPdPortSrc)
         self.UDPPortDestCheck.clicked.connect(self.updUDPdPortDst)
+	
+
 
     def upddUDPLen(self): 
         if self.bUDPLen == False:
@@ -75,8 +79,8 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
             self.bUDPChsum = True
         else:
             self.UDPChsumEdit.clear()
+            self.bUDPChsum = False
 
-            bUDPChsum = False
 
     def updUDPdPortSrc(self): 
         if self.bPortSrc == False:
@@ -146,7 +150,16 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
             self.SeqNEdit.clear()
             self.bSeqNum = True
 
-
+    def upddChkSumICMP(self):
+        if self.bICMPChkSum == False:
+            dChkSum = random.randint(0,65535)
+            self.ChsumEditICMP.setText(str(dChkSum))
+            self.bICMPChkSum = True
+        else:
+            self.ChsumEditICMP.clear()
+            self.bICMPChkSum = True
+            
+            
     def updSPort(self):
         if self.bPortSrc2 == False:
             dPortSrc = random.randint(0,65535)
@@ -238,22 +251,41 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
         if (self.FragEdit.toPlainText() != ''):
             ipPacket.frag = int(self.FragEdit.toPlainText())
 
+        dFlag = 0
         if (self.ResRadioBtn.isChecked()):
-            ipPacket.flags = 0
+            dFlag |= 0x00
+            ipPacket.flags = dFlag
         if (self.DFRadioBtn.isChecked()):
-            ipPacket.flags = 1
+            dFlag |= 0x02
+            ipPacket.flags = dFlag
         if (self.MFRadioBtn.isChecked()):
-            ipPacket.flags = 2
+            dFlag |= 0x04
+            ipPacket.flags = dFlag
+
 
         dTOS = 0
         
         if (self.PrecCheckBox0.isChecked()):
-            dTOS |= 0x001
+            dTOS |= 0x01
             ipPacket.tos = dTos
         if (self.PrecCheckBox1.isChecked()):
-            dTOS |= 0x010
+            dTOS |= 0x02
             ipPacket.tos = dTos
-
+        if (self.PrecCheckBox2.isChecked()):
+            dTOS |= 0x04
+            ipPacket.tos = dTos
+        if (self.DelayCheck.isChecked()):
+            dTOS |= 0x08
+            ipPacket.tos = dTos
+        if (self.ThrCheck.isChecked()):
+            dTOS |= 0x10
+            ipPacket.tos = dTos
+        if (self.RelCheck.isChecked()):
+            dTOS |= 0x20
+            ipPacket.tos = dTos
+        if (self.CostCheck.isChecked()):
+            dTOS |= 0x40
+            ipPacket.tos = dTos
 
         if (self.TLEdit.toPlainText() != ''):
             ipPacket.len = int(self.TLEdit.toPlainText())
@@ -355,12 +387,15 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
 
             if (self.SeqICMPEdit.toPlainText() != ''):
                 icmp_packet.seq = int(self.SeqICMPEdit.toPlainText())  
+                
+            if (self.ChsumEditICMP.toPlainText() != ''):
+                icmp_packet.chksum = int(self.ChsumEditICMP.toPlainText())                
 
             dIdx = self.ICMPMCombo.currentIndex()
             if (dIdx == 0):
-                icmp_packet.type = 0
-            else:
                 icmp_packet.type = 8
+            else:
+                icmp_packet.type = 0
             
             packet = ipPacket/icmp_packet/self.FinalDataEdit.toPlainText()
             
