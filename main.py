@@ -256,10 +256,10 @@ class ExampleApp(QtWidgets.QMainWindow, PaGeMain.Ui_Dialog):
             dFlag |= 0x00
             ipPacket.flags = dFlag
         if (self.DFRadioBtn.isChecked()):
-            dFlag |= 0x02
+            dFlag |= 0x01
             ipPacket.flags = dFlag
         if (self.MFRadioBtn.isChecked()):
-            dFlag |= 0x04
+            dFlag |= 0x02
             ipPacket.flags = dFlag
 
 
